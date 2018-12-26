@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
+.display {
+    width: 100%;
+    text-align: center;
+    border: 1px solid gray;
+    padding: 10px;
+}
+.buttonPanel {
+    display: flex;
+    flex-flow: row nowrap;
+}
+.mathPanel {
+    width: 75%;
+    display: flex;
+    flex-flow: row wrap;
+}
+.registerOperations{
+    width: 25%;
+    text-align: center;
+}
+.button {
+    width: 25%;
+    height: 20%;
+    text-align: center;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.regButton {
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.equals {
+    width: 100%;
+}
