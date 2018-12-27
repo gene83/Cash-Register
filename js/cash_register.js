@@ -1,12 +1,6 @@
 const myCalc = calculator();
-
-// const getContainer = document.querySelector('#container');
-
-// getContainer.innerHTML = myCalc.hello()
-
 (function register() {
-    let balance = document.createElement('div');
-    balance.innerHTML = '0.00';
+    let balance = '0.00'
 
     const getBalanceButton = document.getElementsByClassName('balance')[0];
     const getDepositButton = document.getElementsByClassName('deposit')[0];
@@ -20,6 +14,13 @@ const myCalc = calculator();
 
     getDepositButton.addEventListener('click', deposit)
     function deposit() {
+        balance = myCalc.add(balance) + '';
+        myCalc.clearDisplay();
     }
     
+    getWithdrawButton.addEventListener('click', withdraw);
+    function withdraw() {
+        balance = myCalc.subtract(balance) + '';
+        myCalc.clearDisplay()
+    }
 })();

@@ -14,15 +14,18 @@
     const getMultiplyButton = document.getElementsByClassName('multiplyButton')[0];
     const getDivideButton = document.getElementsByClassName('divideButton')[0];
 
+    // initializing the value of display
     display.innerHTML = '$ 0.00';
 
+    // adding input value funtion to number buttons
     for (let i = 0; i < getNumber.length; i++) {
         getNumber[i].addEventListener('click', inputValue)
     }
-    //should start a new value if display is at initial value or last clicked is operator or equals,
-    //else it should concatenate the button value to the display
+    // should start a new value if display is at initial value or last clicked is operator or equals,
+    // else it should concatenate the button value to the display
     function inputValue(value) {
-        if (this.innerHTML === 'Get Balance') {
+        // checks to see if we are updating 'balance'
+        if (typeof value === 'string') {
             display.innerHTML = '$ ' + value;
         //when starting a new value with '.', display should be '0.'
         } else if ((display.innerHTML === '$ 0.00' || lastClicked === 'operator' || lastClicked === 'equals') && this.innerHTML === '.') {
@@ -41,6 +44,7 @@
         }
     }
 
+    // resets the entire display
     getClearButton.addEventListener('click', clearDisplay);
     function clearDisplay() {
         display.innerHTML = '$ 0.00';
@@ -58,12 +62,22 @@
         console.log(operator);
     }
 
-    //Operator buttons should change the value of the operator variable to the appropriate value
-    //They should calculate and display a value only if ...
+    // Operator buttons should change the value of the operator variable to the appropriate value and set the value of firstNum to the display before being pressed
+    // They should calculate and display a value only if there is a previous expression to evaluate (firstnum !== '') & a number was clicked last
+    // also the border should change to indicate the operator being used
+
     getPlusButton.addEventListener('click', add);
-    function add() {
-        if (firstNum !== '' && lastClicked !== 'operator' && lastClicked !== 'equals') {
+    function add(value) {
+        // check for the case of 'deposit button'
+        if(typeof value === 'string') {
+            firstNum = parseFloat(value);
+            operator = 'add';
+            lastClicked = 'operator'
+            return calculate();
+        // checks if there is a previous expression to evaluate
+        } else if (firstNum !== '' && lastClicked === 'number') {
             calculate();
+        // updates: lastClicked, operator and the border of operator buttons
         } else {
         lastClicked = 'operator'
         firstNum = parseFloat(display.innerHTML.replace('$ ', ''));
@@ -80,10 +94,18 @@
     }
 
     getMinusButton.addEventListener('click', subtract);
-    function subtract() {
-        if (firstNum !== '' && lastClicked !== 'operator' && lastClicked !== 'equals') {
+    function subtract(value) {
+        // checking for the 'withdraw button' case
+        if (typeof value === 'string') {
+            firstNum = parseFloat(value);
+            operator = 'subtract';
+            lastClicked = 'operator';
+            return calculate();
+        // checks if there is a previous expression to evaluate
+        } else if (firstNum !== '' && lastClicked === 'number') {
             calculate();
         } else {
+        // updates: lastClicked, operator, firstNum and the border of operator buttons
         lastClicked = 'operator'
         firstNum = parseFloat(display.innerHTML.replace('$ ', ''));
         }
@@ -100,9 +122,11 @@
 
     getMultiplyButton.addEventListener('click', multiply);
     function multiply() {
-        if (firstNum !== '' && lastClicked !== 'operator' && lastClicked !== 'equals') {
+        // checks if there is a previous expression to evaluate
+        if (firstNum !== '' && lastClicked === 'number') {
             calculate();
         } else {
+         // updates: lastClicked, operator, firstNum and the border of operator buttons
         lastClicked = 'operator'
         firstNum = parseFloat(display.innerHTML.replace('$ ', ''));
         }
@@ -119,9 +143,11 @@
 
     getDivideButton.addEventListener('click', divide);
     function divide() {
-        if (firstNum !== '' && lastClicked !== 'operator' && lastClicked !== 'equals') {
+         // checks if there is a previous expression to evaluate
+        if (firstNum !== '' && lastClicked === 'number') {
             calculate();
         } else {
+         // updates: lastClicked, operator, firstNum and the border of operator buttons
         lastClicked = 'operator'
         firstNum = parseFloat(display.innerHTML.replace('$ ', ''));
         }
@@ -136,24 +162,34 @@
         console.log(operator);
     }
 
+    // should perform the necessary operations based on the value of 'operator' and update the value of the display and return the answer
+    // sets the value of firstNum equal to the display when finished for consecutive calculations
+    // will be called if an operator is clicked after an operator and number, in that order
     getEqualsButton.addEventListener('click', calculate);
     function calculate() {
+        // if the equals sign was the last sign to be clicked, we want the value of secondNum to stay the same, in order to 
+        // perform correct calculations: 6 - 1 = 5, -> hitting equals again should return 4 ( - and 1 stay the same)
+        // otherwise secondNum will be set to the value in display before the function is run
+        let answer = 0;
         if (lastClicked !== 'equals') {
         secondNum = parseFloat(display.innerHTML.replace('$ ',''));
         }
-
         if (operator === 'add') {
-            display.innerHTML = '$ ' + (firstNum + secondNum);
+            answer = (firstNum + secondNum).toFixed(2);
+            display.innerHTML = '$ ' + answer;
             getPlusButton.style.border = '1px solid gray';
         } else if (operator === 'subtract'){
-            display.innerHTML = '$ ' + (firstNum - secondNum);
+            answer = (firstNum - secondNum).toFixed(2);
+            display.innerHTML = '$ ' + answer;
             getMinusButton.style.border = '1px solid gray';
         } else if (operator === 'multiply'){
-            display.innerHTML = '$ ' + (firstNum * secondNum);
+            answer = (firstNum * secondNum).toFixed(2);
+            display.innerHTML = '$ ' + answer;
             getMultiplyButton.style.border = '1px solid gray';
         } else 
         if (operator === 'divide'){
-            display.innerHTML = '$ ' + (firstNum / secondNum);
+            answer = (firstNum / secondNum).toFixed(2);
+            display.innerHTML = '$ ' + answer;
             getDivideButton.style.border = '1px solid gray';
         } 
 
@@ -163,6 +199,7 @@
         console.log(secondNum);
         console.log(lastClicked);
         console.log(operator);
+        return answer;
      }
 
      return{
