@@ -52,10 +52,10 @@
         secondNum = '';
         lastClicked = '';
         operator = '';
-        getPlusButton.style.border = '1px solid gray';
-        getMinusButton.style.border = '1px solid gray';
-        getMultiplyButton.style.border = '1px solid gray';
-        getDivideButton.style.border = '1px solid gray';
+        getPlusButton.style.border = '1px solid darkslategray';
+        getMinusButton.style.border = '1px solid darkslategray';
+        getMultiplyButton.style.border = '1px solid darkslategray';
+        getDivideButton.style.border = '1px solid darkslategray';
         console.log(firstNum);
         console.log(secondNum);
         console.log(lastClicked);
@@ -83,10 +83,10 @@
         firstNum = parseFloat(display.innerHTML.replace('$ ', ''));
         }
         operator = 'add';
-        this.style.border = '3px solid gray';
-        getMinusButton.style.border = '1px solid gray';
-        getMultiplyButton.style.border = '1px solid gray';
-        getDivideButton.style.border = '1px solid gray';
+        this.style.border = '3px solid darkslategray';
+        getMinusButton.style.border = '1px solid darkslategray';
+        getMultiplyButton.style.border = '1px solid darkslategray';
+        getDivideButton.style.border = '1px solid darkslategray';
         console.log(firstNum);
         console.log(secondNum);
         console.log(lastClicked);
@@ -110,10 +110,10 @@
         firstNum = parseFloat(display.innerHTML.replace('$ ', ''));
         }
         operator = 'subtract';
-        this.style.border = '3px solid gray';
-        getPlusButton.style.border = '1px solid gray';
-        getMultiplyButton.style.border = '1px solid gray';
-        getDivideButton.style.border = '1px solid gray';
+        this.style.border = '3px solid darkslategray';
+        getPlusButton.style.border = '1px solid darkslategray';
+        getMultiplyButton.style.border = '1px solid darkslategray';
+        getDivideButton.style.border = '1px solid darkslategray';
         console.log(firstNum);
         console.log(secondNum);
         console.log(lastClicked);
@@ -131,10 +131,10 @@
         firstNum = parseFloat(display.innerHTML.replace('$ ', ''));
         }
         operator = 'multiply';
-        this.style.border = '3px solid gray';
-        getPlusButton.style.border = '1px solid gray';
-        getMinusButton.style.border = '1px solid gray';
-        getDivideButton.style.border = '1px solid gray';
+        this.style.border = '3px solid darkslategray';
+        getPlusButton.style.border = '1px solid darkslategray';
+        getMinusButton.style.border = '1px solid darkslategray';
+        getDivideButton.style.border = '1px solid darkslategray';
         console.log(firstNum);
         console.log(secondNum);
         console.log(lastClicked);
@@ -152,10 +152,10 @@
         firstNum = parseFloat(display.innerHTML.replace('$ ', ''));
         }
         operator = 'divide';
-        this.style.border = '3px solid gray';
-        getPlusButton.style.border = '1px solid gray';
-        getMinusButton.style.border = '1px solid gray';
-        getMultiplyButton.style.border = '1px solid gray';
+        this.style.border = '3px solid darkslategray';
+        getPlusButton.style.border = '1px solid darkslategray';
+        getMinusButton.style.border = '1px solid darkslategray';
+        getMultiplyButton.style.border = '1px solid darkslategray';
         console.log(firstNum);
         console.log(secondNum);
         console.log(lastClicked);
@@ -177,20 +177,20 @@
         if (operator === 'add') {
             answer = (firstNum + secondNum).toFixed(2);
             display.innerHTML = '$ ' + answer;
-            getPlusButton.style.border = '1px solid gray';
+            getPlusButton.style.border = '1px solid darkslategray';
         } else if (operator === 'subtract'){
             answer = (firstNum - secondNum).toFixed(2);
             display.innerHTML = '$ ' + answer;
-            getMinusButton.style.border = '1px solid gray';
+            getMinusButton.style.border = '1px solid darkslategray';
         } else if (operator === 'multiply'){
             answer = (firstNum * secondNum).toFixed(2);
             display.innerHTML = '$ ' + answer;
-            getMultiplyButton.style.border = '1px solid gray';
+            getMultiplyButton.style.border = '1px solid darkslategray';
         } else 
         if (operator === 'divide'){
             answer = (firstNum / secondNum).toFixed(2);
             display.innerHTML = '$ ' + answer;
-            getDivideButton.style.border = '1px solid gray';
+            getDivideButton.style.border = '1px solid darkslategray';
         } 
 
         lastClicked = 'equals';
