@@ -7,11 +7,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: lightcyan;
 }
+
 .container {
     height: 75%;
     width: 80%;
     padding: 20px;
+    margin-top: 50px;
     background-color: darkgray;
 }
 
@@ -67,4 +70,43 @@ body {
 
 .equalsButton {
     width: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+    body {
+        font-size: 20pt;
+    }
+
+    .display {
+        font-size: 42pt;
+    }
+
+    .registerOperations {
+        font-size: 20pt;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    body {
+        font-size: 12pt;
+    }
+    
+    .display {
+        font-size: 32pt;
+    }
+    .registerOperations {
+        font-size: 12pt;
+    }
+}
+    @media only screen and (max-width: 450px) {
+        body {
+            font-size: 8pt;
+        }
+        
+        .display {
+            font-size: 22pt;
+        }
+        .registerOperations {
+            font-size: 8pt;
+        }
 }

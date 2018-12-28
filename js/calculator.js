@@ -28,7 +28,7 @@
         if (typeof value === 'string') {
             display.innerHTML = '$ ' + value;
         //when starting a new value with '.', display should be '0.'
-        } else if ((display.innerHTML === '$ 0.00' || lastClicked === 'operator' || lastClicked === 'equals') && this.innerHTML === '.') {
+        }  else if ((display.innerHTML === '$ 0.00' || lastClicked === 'operator' || lastClicked === 'equals') && this.innerHTML === '.') {
             display.innerHTML = '$ 0.';
             lastClicked = 'number';
         //when starting a new value the clicked button should replace display
@@ -38,6 +38,9 @@
         // if the display already includes a decimal, clicking '.' should do nothing
         } else if (display.innerHTML.includes('.') && this.innerHTML === '.') {
             display.innerHTML = display.innerHTML;
+        // should do nothing if trying to input a value in to the third decimal place
+        } else if (display.innerHTML.indexOf('.') > 0 && (display.innerHTML.length - display.innerHTML.indexOf('.') > 2)) {
+                display.innerHTML = display.innerHTML;
         // if it is not the start of a new value, clicked button should be concatenated to display
         } else {
            display.innerHTML = display.innerHTML + this.innerHTML
@@ -56,16 +59,11 @@
         getMinusButton.style.border = '1px solid darkslategray';
         getMultiplyButton.style.border = '1px solid darkslategray';
         getDivideButton.style.border = '1px solid darkslategray';
-        console.log(firstNum);
-        console.log(secondNum);
-        console.log(lastClicked);
-        console.log(operator);
     }
 
     // Operator buttons should change the value of the operator variable to the appropriate value and set the value of firstNum to the display before being pressed
     // They should calculate and display a value only if there is a previous expression to evaluate (firstnum !== '') & a number was clicked last
     // also the border should change to indicate the operator being used
-
     getPlusButton.addEventListener('click', add);
     function add(value) {
         // check for the case of 'deposit button'
@@ -87,10 +85,6 @@
         getMinusButton.style.border = '1px solid darkslategray';
         getMultiplyButton.style.border = '1px solid darkslategray';
         getDivideButton.style.border = '1px solid darkslategray';
-        console.log(firstNum);
-        console.log(secondNum);
-        console.log(lastClicked);
-        console.log(operator);
     }
 
     getMinusButton.addEventListener('click', subtract);
@@ -114,11 +108,7 @@
         getPlusButton.style.border = '1px solid darkslategray';
         getMultiplyButton.style.border = '1px solid darkslategray';
         getDivideButton.style.border = '1px solid darkslategray';
-        console.log(firstNum);
-        console.log(secondNum);
-        console.log(lastClicked);
-        console.log(operator);
-     }
+    }
 
     getMultiplyButton.addEventListener('click', multiply);
     function multiply() {
@@ -135,11 +125,7 @@
         getPlusButton.style.border = '1px solid darkslategray';
         getMinusButton.style.border = '1px solid darkslategray';
         getDivideButton.style.border = '1px solid darkslategray';
-        console.log(firstNum);
-        console.log(secondNum);
-        console.log(lastClicked);
-        console.log(operator);
-     }
+    }
 
     getDivideButton.addEventListener('click', divide);
     function divide() {
@@ -156,10 +142,6 @@
         getPlusButton.style.border = '1px solid darkslategray';
         getMinusButton.style.border = '1px solid darkslategray';
         getMultiplyButton.style.border = '1px solid darkslategray';
-        console.log(firstNum);
-        console.log(secondNum);
-        console.log(lastClicked);
-        console.log(operator);
     }
 
     // should perform the necessary operations based on the value of 'operator' and update the value of the display and return the answer
@@ -195,10 +177,6 @@
 
         lastClicked = 'equals';
         firstNum = parseFloat(display.innerHTML.replace('$ ', ''));
-        console.log(firstNum);
-        console.log(secondNum);
-        console.log(lastClicked);
-        console.log(operator);
         return answer;
      }
 
@@ -211,5 +189,6 @@
          divide,
          calculate
      }
+     
 } 
 
